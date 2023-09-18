@@ -1,6 +1,7 @@
 package pro.sky.calculator.service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.calculator.exception.DividedException;
 import pro.sky.calculator.service.CalculatorService;
 
 @Service
@@ -9,27 +10,28 @@ public class CalculatorServiceImpl implements CalculatorService {
         return "<b>Добро пожаловать в калькулятор</b>";
     }
 
-    public String plus(int num1, int num2) {
-        int sum = num1 + num2;
-        return num1 + " + " + num2 + " = " + sum;
+    @Override
+    public long plus(int num1, int num2) {
+        return (long) num1 + num2;
     }
 
-    public String minus(int num1, int num2) {
-        int difference = num1 - num2;
-        return num1 + " - " + num2 + " = " + difference;
+    @Override
+    public long minus(int num1, int num2) {
+        return (long) num1 - num2;
     }
 
-    public String multiply(int num1, int num2) {
-        int productOfMultiplication = num1 * num2;
-        return num1 + " * " + num2 + " = " + productOfMultiplication;
+    @Override
+    public long multiply(int num1, int num2) {
+        return (long) num1 * num2;
     }
 
-    public String divide(int num1, int num2) {
-//        if (num2 == 0) {
-//            throw new RuntimeException("На ноль делить нельзя!");
-//        } else {
-        double quotientOfDivision = (double) num1 / num2;
-        return num1 + " / " + num2 + " = " + quotientOfDivision;
+    @Override
+    public double divide(int num1, int num2) {
+        if (num2 == 0) {
+            throw new DividedException("На ноль делить нельзя!");
+        } else {
+            return (double) num1 / num2;
+        }
     }
 }
 

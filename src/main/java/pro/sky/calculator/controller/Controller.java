@@ -23,24 +23,26 @@ public class Controller {
 
     @GetMapping(path = "/plus")
     public String plus(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
-        return calculatorService.plus(num1, num2);
+        long sum = calculatorService.plus(num1, num2);
+        return num1 + " + " + num2 + " = " + sum;
     }
 
     @GetMapping(path = "/minus")
     public String minus(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
-        return calculatorService.minus(num1, num2);
+        long difference = calculatorService.minus(num1, num2);
+        return num1 + " - " + num2 + " = " + difference;
     }
 
     @GetMapping(path = "/multiply")
     public String multiply(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
-        return calculatorService.multiply(num1, num2);
+        long productOfMultiplication = calculatorService.multiply(num1, num2);
+        return num1 + " * " + num2 + " = " + productOfMultiplication;
     }
 
     @GetMapping(path = "/divide")
     public String divide(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
-        if (num2 == 0) {
-            return ("На ноль делить нельзя!");
-        }
-        return calculatorService.divide(num1, num2);
+
+        double quotientOfDivision = calculatorService.divide(num1, num2);
+        return num1 + " / " + num2 + " = " + quotientOfDivision;
     }
 }
