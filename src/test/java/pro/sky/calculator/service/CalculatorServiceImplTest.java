@@ -2,8 +2,10 @@ package pro.sky.calculator.service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pro.sky.calculator.exception.DividedException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorServiceImplTest {
     private CalculatorServiceImpl calculatorService = new CalculatorServiceImpl();
@@ -61,5 +63,12 @@ public class CalculatorServiceImplTest {
         double quotientOfDivision = calculatorService.divide(num1, num2);
 
         assertEquals((double) num1 / num2, quotientOfDivision);
+    }
+    @Test
+    void divided_shouldThrowExceptionWhenNumIsNull(){
+        num2 =0;
+
+        DividedException quotientOfDivision = assertThrows(DividedException.class, () -> calculatorService.divide(num1, num2));
+        assertEquals("На ноль делить нельзя!", quotientOfDivision.getMessage());
     }
 }
